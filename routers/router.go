@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"bbs/controllers"
+	"biggerforum/controllers"
 
 	"github.com/astaxie/beego"
 )

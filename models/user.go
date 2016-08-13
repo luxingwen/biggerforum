@@ -1,8 +1,6 @@
 package models
 
 import (
-	"errors"
-
 	"github.com/astaxie/beego/orm"
 )
 
@@ -52,7 +50,7 @@ func NewUser(id int64, username, email string) *User {
 func Register(username, password, email string) error {
 	user := &User{UserName: username, PassWd: password, Email: email}
 	o := orm.NewOrm()
-	_, err = o.Insert(user)
+	_, err := o.Insert(user)
 	return err
 }
 

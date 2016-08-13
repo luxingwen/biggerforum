@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bbs/models"
-	_ "bbs/routers"
+	"biggerforum/models"
+	_ "biggerforum/routers"
 	"fmt"
 
 	"github.com/astaxie/beego/orm"

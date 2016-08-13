@@ -24,7 +24,7 @@ func AddAnswer(question *Question, user *User, content string) error {
 
 func (this *Answer) SetUser() error {
 	o := orm.NewOrm()
-	err := o.QueryTable("user").Filter("answer_id", this.id).Limit(1).One(&this.User)
+	err := o.QueryTable("user").Filter("answer_id", this.Id).Limit(1).One(&this.User)
 	return err
 }
 

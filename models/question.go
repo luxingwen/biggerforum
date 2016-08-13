@@ -50,6 +50,7 @@ func (this *Question) SetAnswer() error {
 		return err
 	}
 	this.AnswerCount = int(num)
+	return nil
 }
 
 func (this *Question) SetUser() error {
