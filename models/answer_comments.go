@@ -21,3 +21,9 @@ func AddAnswerComments(answer *Answer, fromUser, toUser *User) error {
 	_, err := o.Insert(an)
 	return err
 }
+
+func (this *AnswerComments) LoadRelation(table string) error {
+	o := orm.NewOrm()
+	_, err := o.LoadRelated(this, table)
+	return err
+}

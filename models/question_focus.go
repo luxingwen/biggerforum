@@ -19,3 +19,9 @@ func (this *QuestionFocus) Add() error {
 	_, err := o.Insert(this)
 	return err
 }
+
+func (this *QuestionFocus) LoadRelation(table string) error {
+	o := orm.NewOrm()
+	_, err := o.LoadRelated(this, table)
+	return err
+}

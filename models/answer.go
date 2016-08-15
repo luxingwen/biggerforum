@@ -1,6 +1,7 @@
 package models
 
 import (
+	"errors"
 	"time"
 
 	"github.com/astaxie/beego/orm"
@@ -22,14 +23,17 @@ func AddAnswer(question *Question, user *User, content string) error {
 	return err
 }
 
-func (this *Answer) SetUser() error {
+func (this *Answer) LoadRelation(table string) error {
 	o := orm.NewOrm()
-	err := o.QueryTable("user").Filter("answer_id", this.Id).Limit(1).One(&this.User)
+	_, err := o.LoadRelated(this, table)
 	return err
 }
 
-func (this *Answer) SetAnswerComments() error {
+func (this *Answer) Delete(u *User) error {
 	o := orm.NewOrm()
-	_, err := o.QueryTable("answer_comments").Filter("answer_id", this.Id).All(&this.AnswerComments)
+	if this.User.Id != u.Id {
+		return errors.New("no permission!")
+	}
+	_, err := o.Delete(this)
 	return err
 }

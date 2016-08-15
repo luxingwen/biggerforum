@@ -23,8 +23,8 @@ type Question struct {
 	Updated      time.Time `orm:"null;index"`
 }
 
-func AddQuestion(title, content string, user *User) error {
-	question := &Question{Title: title, Content: content, User: user}
+func AddQuestion(title, content string, user *User, topics []*Topic) error {
+	question := &Question{Title: title, Content: content, User: user, Topics: topics}
 	question.Created = time.Now()
 	o := orm.NewOrm()
 	_, err := o.Insert(question)
@@ -33,28 +33,20 @@ func AddQuestion(title, content string, user *User) error {
 
 func (this *Question) Update() error {
 	o := orm.NewOrm()
+	this.Updated = time.Now()
 	_, err := o.Update(this)
 	return err
 }
 
-func (this *Question) SetTopics() error {
+func (this *Question) LoadRelation(table string) error {
 	o := orm.NewOrm()
-	_, err := o.QueryTable("question_topics").Filter("question_id", this.Id).All(&this.Topics)
+	_, err := o.LoadRelated(this, table)
 	return err
 }
 
-func (this *Question) SetAnswer() error {
+func QueryQuestion() ([]*Question, error) {
+	var questions []*Question
 	o := orm.NewOrm()
-	num, err := o.QueryTable("answer").Filter("answer_id", this.Id).All(&this.Topics)
-	if err != nil {
-		return err
-	}
-	this.AnswerCount = int(num)
-	return nil
-}
-
-func (this *Question) SetUser() error {
-	o := orm.NewOrm()
-	err := o.QueryTable("user").Filter("question_id", this.Id).Limit(1).One(&this.User)
-	return err
+	_, err := o.QueryTable("question").Limit(100).All(&questions)
+	return questions, err
 }

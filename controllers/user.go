@@ -10,11 +10,6 @@ type UserController struct {
 }
 
 func (this *UserController) Get() {
-	//	username := "shuaishuai"
-	//	password := "123456"
-	//email := "935232474@qq.com"
-	//Login(username, password)
-	QueryQuestions()
 }
 
 func (this *UserController) Post() {
@@ -34,8 +29,11 @@ func Login(username, password string) {
 	fmt.Println(u, err)
 }
 
-func QueryQuestions() {
-	u := models.NewUser(1, "shuaishuai", "935232474@qq.com")
-	err := u.SetQuestions()
-	fmt.Println(err, *u)
+func loadUser(user *models.User, m []string) {
+	for _, v := range m {
+		if err := user.LoadRelation(v); err != nil {
+			fmt.Println(err)
+			continue
+		}
+	}
 }

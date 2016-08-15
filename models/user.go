@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -11,8 +13,8 @@ type User struct {
 	Email         string `orm:"unique"`
 	VerifyEmail   int
 	Phone         string
-	Created       int64
-	Updated       string
+	Created       time.Time
+	Updated       time.Time
 	Lever         int64
 	FirstIp       string
 	LastIp        string
@@ -68,54 +70,15 @@ func Login(username, password string) (*User, error) {
 	return user, nil
 }
 
-func (this *User) SetQuestions() error {
+func (this *User) Update() error {
 	o := orm.NewOrm()
-	num, err := o.QueryTable("question").Filter("user", this.Id).RelatedSel().All(&this.Question)
-	if err != nil {
-		return err
-	}
-	this.QuestionCount = int(num)
-	return nil
-}
-
-func (this *User) SetQuestionFocus() error {
-	o := orm.NewOrm()
-	_, err := o.QueryTable("question_focus").Filter("user", this.Id).RelatedSel().All(&this.QuestionFocus)
+	this.Updated = time.Now()
+	_, err := o.Update(this)
 	return err
 }
 
-func (this *User) SetAnswer() error {
+func (this *User) LoadRelation(table string) error {
 	o := orm.NewOrm()
-	num, err := o.QueryTable("answer").Filter("user", this.Id).RelatedSel().All(&this.Answer)
-	if err != nil {
-		return err
-	}
-	this.AnserCount = int(num)
-	return nil
-}
-
-func (this *User) SetTopicFoucs() error {
-	o := orm.NewOrm()
-	_, err := o.QueryTable("topic_focus").Filter("user", this.Id).RelatedSel().All(&this.TopicFoucs)
+	_, err := o.LoadRelated(this, table)
 	return err
-}
-
-func (this *User) SetFans() error {
-	o := orm.NewOrm()
-	num, err := o.QueryTable("fans").Filter("user", this.Id).RelatedSel().All(&this.Fans)
-	if err != nil {
-		return err
-	}
-	this.FansCount = int(num)
-	return nil
-}
-
-func (this *User) SetFlow() error {
-	o := orm.NewOrm()
-	num, err := o.QueryTable("flow").Filter("user", this.Id).RelatedSel().All(&this.Flow)
-	if err != nil {
-		return err
-	}
-	this.FlowCount = int(num)
-	return nil
 }
