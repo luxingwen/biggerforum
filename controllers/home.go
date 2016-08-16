@@ -5,5 +5,5 @@ type HomeController struct {
 }
 
 func (this *HomeController) Get() {
-
+	this.TplNames = "index.html"
 }

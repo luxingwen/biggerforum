@@ -9,6 +9,10 @@ type QuestionController struct {
 	BaseController
 }
 
+func (this *QuestionController) URLMapping() {
+	this.Mapping("Edit", this.Edit)
+}
+
 func (this *QuestionController) Get() {
 	res, err := query()
 	if err == nil {
@@ -19,6 +23,17 @@ func (this *QuestionController) Get() {
 }
 
 func (this *QuestionController) Post() {
+	title := this.Input().Get("title")
+	content := this.Input().Get("content")
+	fmt.Println("title :", title)
+	fmt.Println("content: ", content)
+}
+
+func (this *QuestionController) Edit() {
+	this.TplNames = "edit.html"
+}
+
+func (this *QuestionController) AddQuestion() {
 
 }
 

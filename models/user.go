@@ -49,11 +49,14 @@ func NewUser(id int64, username, email string) *User {
 	return &User{Id: id, UserName: username, Email: email}
 }
 
-func Register(username, password, email string) error {
-	user := &User{UserName: username, PassWd: password, Email: email}
+func Register(username, password, email string) (*User, error) {
+	user := &User{UserName: username, PassWd: password, Email: email, Created: time.Now(), Updated: time.Now()}
 	o := orm.NewOrm()
 	_, err := o.Insert(user)
-	return err
+	if err != nil {
+		return nil, err
+	}
+	return user, nil
 }
 
 func Login(username, password string) (*User, error) {
