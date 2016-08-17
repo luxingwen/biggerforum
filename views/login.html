@@ -7,22 +7,67 @@
     <link href="/static/css/sigin.css" rel="stylesheet"/>
 </head>
 <body>
+  
+  
   <div class="container">
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>登录
+			</div>
+			<div class="panel-body">
+			<div class="row">
+				 <div class="col-md-6">
+					 <form class="form-signin">
+						 <h3 >
+           <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 登录
+                    </h3>
 
-       <form class="form-signin" method="post" action="/user/login">
-         <h2 class="form-signin-heading">Please sign in</h2>
-         <label for="inputEmail" class="sr-only">Email address</label>
-         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus name="username">
-         <label for="inputPassword" class="sr-only">Password</label>
-         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
-         <div class="checkbox">
-           <label>
-             <input type="checkbox" value="remember-me"> Remember me
-           </label>
-         </div>
-         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-       </form>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+						</div>
+						<div class="form-group">
+									<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+						</div>
+						<div class="checkbox">
+						<label>
+						<input type="checkbox"> Remember me
+						</label>
+						</div>
+						<label>验证码</label>
+						<img  id="captcha" src="/captcha/{{.CaptchaId}}.png" onclick="this.src=('/captcha/{{.CaptchaId}}.png?reload='+(new Date()).getTime())" />
+	                                    <input type="text" class="form-control"  name=captchaSolution  placeholder="请输入验证码">
+						<input type=hidden name=captchaId value="{{.CaptchaId}}"><br>
+							 <p>点击图片刷新</p>
+					<div class="row">
+  					<div class="col-md-6">
+								<button type="submit" class="btn btn-primary ">登陆</button>
+						</div>
+						<div class="col-md-6">
+						<a href="" class="btn btn-default pull-right">忘记密码</a>
+						</div>
+					</div>
+					 </form>
+				 </div>
+				 <div class="col-md-6">
+					 <h3>
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 帮助
+					 </h3>
+					 <h5>如果您还没有注册帐户的话，请先注册。</h5>
+					 <a class="btn btn-default" href="#" role="button">立即注册</a>
+				 </div>
+			</div>
+			</div>
+		</div>
+	</div>
+		<div class="col-md-2"></div>
+</div>
 
-     </div> 
+
+     </div>
 </body>
 </html>

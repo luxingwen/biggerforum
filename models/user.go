@@ -85,3 +85,13 @@ func (this *User) LoadRelation(table string) error {
 	_, err := o.LoadRelated(this, table)
 	return err
 }
+
+func GetUser(id int64) (*User, error) {
+	u := &User{Id: id}
+	o := orm.NewOrm()
+	err := o.Read(u)
+	if err != nil {
+		return nil, err
+	}
+	return u, nil
+}

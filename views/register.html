@@ -7,20 +7,67 @@
     <link href="/static/css/sigin.css" rel="stylesheet"/>
 </head>
 <body>
+ 
   <div class="container">
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>注册
+			</div>
+			<div class="panel-body">
+			<div class="row">
+				 <div class="col-md-6">
+					 <form class="form-signin">
+						 <h3 >
+  					 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 注册
+						</h3>
+							<div class="form-group">
+								<label for="exampleInputEmail1">UserName</label>
+								<input type="text" class="form-control" id="exampleInputEmail1" placeholder="UserName">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+						</div>
+						<div class="form-group">
+									<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<div class="form-group">
+									<label for="exampleInputPassword1">Enter Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+						</div>
+						<label>验证码</label>
+						<img  id="captcha" src="/captcha/{{.CaptchaId}}.png" onclick="this.src=('/captcha/{{.CaptchaId}}.png?reload='+(new Date()).getTime())" />
+	             <input type="text" class="form-control"  name=captchaSolution placeholder="请输入验证码" >
+						<input type=hidden name=captchaId value="{{.CaptchaId}}"><br>
+							 <p>点击图片刷新</p>
+					<div class="row">
+  					<div class="col-md-6">
+								<button type="submit" class="btn btn-primary ">注册</button>
+						</div>
+						<div class="col-md-6">
 
-       <form class="form-signin" method="post" action="/user/register">
-         <h2 class="form-signin-heading">Please sign in</h2>
-         <label for="text" class="sr-only">UserName</label>
-         <input type="text" id="inputEmail" class="form-control" placeholder="UserName" required autofocus name="username">
-         <label for="inputEmail" class="sr-only">Email address</label>
-         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus name="email">
-         <label for="inputPassword" class="sr-only">Password</label>
-         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
-         <label for="inputPassword" class="sr-only">Enter repeat Password</label>
-         <input type="password" id="inputPassword" class="form-control" placeholder="Enter repeat Password" required>
-         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-       </form>
+						</div>
+					</div>
+					 </form>
+				 </div>
+				 <div class="col-md-6">
+					 <h3>
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 帮助
+					 </h3>
+					 <h5>请使用真实电子邮箱注册，我们不会将你的邮箱地址分享给任何人。已经注册帐户的用户，请直接登录。</h5>
+					 <a class="btn btn-default" href="#" role="button">现在登陆</a>
+				 </div>
+			</div>
+			</div>
+		</div>
+	</div>
+		<div class="col-md-2"></div>
+</div>
+
 
      </div>
 </body>
