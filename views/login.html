@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8"/>
-<head>
-	<title></title>
-  <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/static/css/sigin.css" rel="stylesheet"/>
+{{template "header"}}
+<title>登录</title>
 </head>
 <body>
-  
-  
+  {{template "nav"}}
   <div class="container">
 <div class="row">
 	<div class="col-md-2"></div>
@@ -20,7 +14,7 @@
 			<div class="panel-body">
 			<div class="row">
 				 <div class="col-md-6">
-					 <form class="form-signin">
+					 <form class="form-signin" method="post" action="/login">
 						 <h3 >
            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 登录
                     </h3>
@@ -58,7 +52,7 @@
                 <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 帮助
 					 </h3>
 					 <h5>如果您还没有注册帐户的话，请先注册。</h5>
-					 <a class="btn btn-default" href="#" role="button">立即注册</a>
+					 <a class="btn btn-default" href="/register" role="button">立即注册</a>
 				 </div>
 			</div>
 			</div>

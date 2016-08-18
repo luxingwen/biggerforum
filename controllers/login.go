@@ -18,16 +18,16 @@ func (this *LoginController) Get() {
 }
 
 func (this *LoginController) Post() {
-
-}
-
-func (this *LoginController) LoginIn() {
-	username := this.Input().Get("username")
+	email := this.Input().Get("email")
 	password := this.Input().Get("password")
-	user, err := login(username, password)
+	if !verifyCode(this.Ctx.Request) {
+		this.Ctx.WriteString("verifycode error")
+		return
+	}
+	user, err := login(email, password)
 	if err != nil {
 		fmt.Println("err: ", err)
-		this.Redirect("/user/login", 302)
+		this.Redirect("/user", 302)
 	}
 	this.SetSession("User", user)
 	this.Redirect("/", 301)

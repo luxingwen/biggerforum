@@ -17,17 +17,17 @@ func (this *RegisterController) Get() {
 }
 
 func (this *RegisterController) Post() {
-
-}
-
-func (this *RegisterController) RegisterIn() {
 	username := this.Input().Get("username")
 	password := this.Input().Get("password")
 	email := this.Input().Get("email")
+	if !verifyCode(this.Ctx.Request) {
+		this.Ctx.WriteString("verifycode error")
+		return
+	}
 	user, err := models.Register(username, password, email)
 	if err != nil {
 		fmt.Println(err)
-		this.Redirect("/user/register", 302)
+		this.Redirect("/register", 302)
 	}
 	this.Redirect("/", 302)
 	this.SetSession("User", user)
