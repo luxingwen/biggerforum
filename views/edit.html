@@ -13,16 +13,19 @@
           </div>
           <div class="panel-body">
 
-            <form>
-              <label for="exampleInputEmail1">话题选择</label>
+            <form method="post" action="/question/edi">
+              <label for="exampleInputEmail1">添加话题</label>
               <div class="form-group">
 
                 <!-- Single button -->
                 <div class="row">
+                  <div class="col-md-4">
+                     <input type="text" class="form-control" id="title" placeholder="" name="topics">
+                  </div>
                     <div class="col-md-4">    
                       <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Defualt <span class="caret"></span>
+                        默认节点 <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                           <li><a href="#">Action</a></li>
@@ -38,11 +41,11 @@
               <p>请选择话题并撰写标题，如果标题能表述完事情，摘录、正文等内容可忽略..</p>
               <div class="form-group">
                 <label for="exampleInputPassword1">标题</label>
-                <input type="text" class="form-control" id="title" placeholder="">
+                <input type="text" class="form-control" id="title" placeholder="" name="title">
               </div>
 			 <label>正文</label>
               <div id="test-editormd">
-               <textarea style="display:none;"> </textarea>
+               <textarea style="display:none;" name="content"> </textarea>
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>

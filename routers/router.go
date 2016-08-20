@@ -13,8 +13,9 @@ func init() {
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/register", &controllers.RegisterController{})
 	beego.Router("/question", &controllers.QuestionController{})
-	beego.Router("/question/edi", &controllers.QuestionController{}, "get:Edit")
+	beego.Router("/question/edi", &controllers.QuestionEdiController{})
 	beego.Router("/files", &controllers.FileController{})
+	beego.Router("/topic/add", &controllers.AddTopicController{})
 
 	beego.Handler("/captcha/*", captcha.Server(captcha.StdWidth, captcha.StdHeight))
 }

@@ -9,5 +9,4 @@ type BaseController struct {
 }
 
 func (c *BaseController) Get() {
-
 }

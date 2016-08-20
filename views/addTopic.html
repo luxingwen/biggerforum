@@ -1,0 +1,30 @@
+{{template "header"}}
+<title>添加话题 BiggerFourm</title>
+ </head>
+ <body>
+  {{template "nav"}}
+ <div class="container">
+   <div class="row">
+     <div class="col-md-4">
+       <form method="post" action="/topic/add">
+        <div class="form-group">
+          <label>话题标题</label>
+          <input type="text" class="form-control" placeholder="话题标题" name="title">
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="isParent"> 是否为父话题
+          </label>
+        </div>
+        <select class="form-control" name="fatherTopic">
+          {{range .Topics}}
+          <option>{{.Title}}</option>
+         {{end}}
+        </select>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+     </div>
+   </div>
+ </div>
+ </body>
+</html>
